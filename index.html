@@ -1,0 +1,555 @@
+<title>Muhammed Usman</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Mono:wght@400;500&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Layout: one long page that reads like an edit timeline. The hero shows a 45 s ad cut laid out across tracks; the colors of those tracks (video, voice, script, words) return as markers in the sections below. */
+:root {
+  --bg: #ECEEF2;
+  --surface: #F7F8FA;
+  --fg: #10131A;
+  --muted: #4B5565;
+  --line: #CBD0DA;
+  --stage: #0B1D3A;
+  --accent: #2540F0;
+  --on-accent: #FFFFFF;
+  --video: #2540F0;
+  --voice: #13806A;
+  --script: #B26A00;
+  --words: #7647C9;
+  --display: "Archivo", "Arial Narrow", Arial, sans-serif;
+  --body: "Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0D1016;
+    --surface: #151922;
+    --fg: #E8EAF0;
+    --muted: #98A1B3;
+    --line: #2A3141;
+    --stage: #080F1F;
+    --accent: #8FA2FF;
+    --on-accent: #0D1016;
+    --video: #7C93FF;
+    --voice: #3FC9A5;
+    --script: #E8A33D;
+    --words: #A98BF0;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0D1016;
+  --surface: #151922;
+  --fg: #E8EAF0;
+  --muted: #98A1B3;
+  --line: #2A3141;
+  --stage: #080F1F;
+  --accent: #8FA2FF;
+  --on-accent: #0D1016;
+  --video: #7C93FF;
+  --voice: #3FC9A5;
+  --script: #E8A33D;
+  --words: #A98BF0;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font: 400 1rem/1.6 var(--body);
+  padding-block: 0;
+  padding-inline: clamp(16px, 4vw, 40px);
+}
+.wrap { max-width: 1120px; margin-inline: auto; }
+a { color: inherit; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+h1, h2, h3 { font-family: var(--display); font-stretch: 75%; text-wrap: balance; margin: 0; }
+p { margin: 0; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+
+/* header */
+html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+.top { display: flex; flex-wrap: wrap; gap: 12px 32px; align-items: center; justify-content: space-between; padding-block: 16px; border-bottom: 1px solid var(--line); }
+@media (min-width: 760px) { .top { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(10px); } }
+.brand { font: 900 1.3rem var(--display); font-stretch: 75%; letter-spacing: .01em; text-decoration: none; }
+.nav { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 22px; font: 500 .8rem var(--mono); text-transform: uppercase; letter-spacing: .08em; }
+.nav a { text-decoration: none; color: var(--muted); }
+.nav a:hover { color: var(--fg); }
+.nav a.nav-cta { color: var(--on-accent); background: var(--accent); padding: 8px 14px; border-radius: 4px; font-weight: 600; }
+.nav a.nav-cta:hover { color: var(--on-accent); filter: brightness(1.08); }
+
+/* hero */
+.hero { padding-block: clamp(32px, 6vw, 72px) clamp(40px, 7vw, 88px); }
+
+.id { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: clamp(16px, 4vw, 40px); align-items: center; margin-bottom: clamp(24px, 4vw, 40px); }
+.id img { height: auto; width: clamp(104px, 22vw, 220px); aspect-ratio: 3 / 4; object-fit: cover; object-position: center top; border-radius: 14px; border: 4px solid var(--fg); box-shadow: 8px 8px 0 var(--accent); display: block; background: var(--surface); }
+.id-name { max-width: none; font-weight: 900; font-stretch: 75%; font-size: clamp(2.6rem, 11vw, 7.4rem); line-height: .88; letter-spacing: -.015em; text-transform: uppercase; color: var(--fg); overflow-wrap: normal; }
+.id-name span { display: block; color: var(--accent); }
+@media (max-width: 560px) { .id { grid-template-columns: minmax(0, 1fr); } .id img { width: 150px; } .id-name { font-size: clamp(2.2rem, 13vw, 3.4rem); } }
+.id-role { margin-top: 14px; font: 600 clamp(.72rem, 1.6vw, .95rem) var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.tagline { margin-top: clamp(28px, 5vw, 48px); font: 800 clamp(1.8rem, 4.2vw, 3rem)/1.08 var(--display); font-stretch: 75%; max-width: 24ch; text-wrap: balance; }
+.tagline em { font-style: normal; color: var(--accent); }
+.facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr)); gap: 0 28px; margin-top: clamp(36px, 6vw, 64px); border-top: 2px solid var(--fg); }
+.facts div { padding-block: 16px; border-bottom: 1px solid var(--line); min-width: 0; }
+.facts dt { font: 500 .78rem var(--mono); text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+.facts dd { margin: 4px 0 0; font-weight: 600; }
+.status { display: flex; flex-wrap: wrap; gap: 4px 14px; font: 500 .8rem var(--mono); color: var(--muted); letter-spacing: .04em; margin-bottom: 14px; }
+.status b { color: var(--voice); font-weight: 600; }
+h1 { font-weight: 850; font-size: clamp(2.7rem, 8.4vw, 6.2rem); line-height: .94; letter-spacing: -.01em; max-width: 14ch; }
+h1 em { font-style: normal; color: var(--accent); }
+.lede { max-width: 56ch; margin-top: 24px; font-size: clamp(1.05rem, 2vw, 1.25rem); color: var(--muted); }
+.lede strong { color: var(--fg); font-weight: 600; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+.btn { display: inline-flex; align-items: center; padding: 13px 20px; border-radius: 4px; font: 600 .95rem var(--body); text-decoration: none; border: 1px solid transparent; }
+.btn-main { background: var(--accent); color: var(--on-accent); }
+.btn-main:hover { filter: brightness(1.08); }
+.btn-ghost { border-color: var(--line); background: var(--surface); }
+.btn-ghost:hover { border-color: var(--fg); }
+
+/* timeline */
+.tl-scroll { overflow-x: auto; padding-top: 30px; margin-top: clamp(32px, 6vw, 64px); }
+.tl { position: relative; min-width: 640px; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; }
+.tl-row { display: grid; grid-template-columns: 96px minmax(0, 1fr); height: 42px; border-top: 1px solid var(--line); }
+.tl-row:first-child { border-top: 0; height: 30px; }
+.tl-name { display: flex; align-items: center; padding-left: 12px; font: 500 .74rem var(--mono); color: var(--muted); letter-spacing: .04em; }
+.lane { position: relative; display: flex; gap: 2px; padding-block: 6px; padding-right: 6px;
+  background-image: linear-gradient(to right, var(--line) 1px, transparent 1px);
+  background-size: 22.222% 100%; }
+.ruler-lane { padding: 0; }
+.ruler-lane span { position: absolute; top: 50%; transform: translateY(-50%); padding-left: 5px; font: 500 .66rem var(--mono); color: var(--muted); }
+.clip { --c: var(--video); flex-basis: 0; min-width: 0; overflow: hidden; display: flex; align-items: center; padding-inline: 6px;
+  background: color-mix(in srgb, var(--c) 24%, var(--surface)); border-left: 3px solid var(--c); border-radius: 2px;
+  font: 500 .66rem var(--mono); white-space: nowrap; color: var(--fg); }
+.gap { flex-basis: 0; }
+.c-script { --c: var(--script); }
+.c-video { --c: var(--video); }
+.c-voice { --c: var(--voice); }
+.c-words { --c: var(--words); }
+.c-voice, .c-words { font-size: .62rem; }
+.ph-track { position: absolute; top: 0; bottom: 0; left: 96px; right: 6px; pointer-events: none; }
+.playhead { position: absolute; top: 0; bottom: 0; left: 6.667%; width: 2px; background: var(--accent); }
+.playhead span { position: absolute; bottom: 100%; left: -1px; margin-bottom: 4px; white-space: nowrap; padding: 3px 8px; border-radius: 3px; background: var(--accent); color: var(--on-accent); font: 500 .68rem var(--mono); }
+.specs { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+.specs li { padding: 4px 12px; border: 1px solid var(--line); border-radius: 99px; font: 500 .78rem var(--mono); color: var(--muted); }
+@media (prefers-reduced-motion: no-preference) {
+  .playhead { animation: scrub 1.7s cubic-bezier(.2, .7, .2, 1) .2s both; }
+}
+@keyframes scrub { from { left: 93%; } to { left: 6.667%; } }
+
+
+/* showreel */
+.reel { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 32px; margin-top: 40px; align-items: start; }
+@media (max-width: 860px) { .reel { grid-template-columns: minmax(0, 1fr); } }
+.stage { width: 100%; aspect-ratio: 16 / 9; background: var(--stage); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; display: flex; justify-content: center; }
+.stage.portrait { width: auto; height: min(640px, 78vh); aspect-ratio: 9 / 16; max-width: 100%; margin-inline: auto; }
+.stage video { width: 100%; height: 100%; object-fit: contain; display: block; background: var(--stage); }
+.reel-list { display: grid; gap: 10px; }
+.reel-item { all: unset; box-sizing: border-box; width: 100%; display: grid; grid-template-columns: 88px minmax(0, 1fr); gap: 14px; padding: 10px; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); cursor: pointer; }
+.reel-item:hover { border-color: var(--fg); }
+.reel-item:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.reel-item.is-active { border-color: var(--accent); box-shadow: inset 4px 0 0 var(--accent); }
+.reel-item img { width: 88px; height: 88px; object-fit: cover; border-radius: 4px; background: var(--stage); display: block; }
+.ri-text { min-width: 0; }
+.ri-text b { display: block; font: 800 1.15rem var(--display); font-stretch: 75%; }
+.ri-text em { display: block; font: 500 .78rem var(--mono); font-style: normal; text-transform: uppercase; letter-spacing: .08em; color: var(--accent); margin-top: 3px; }
+.ri-text span { display: block; color: var(--muted); font-size: .88rem; line-height: 1.45; margin-top: 4px; }
+
+/* sections */
+.sec { border-top: 1px solid var(--line); padding-block: clamp(48px, 8vw, 96px); }
+.eyebrow { font: 500 .8rem var(--mono); text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin-bottom: 14px; }
+h2 { font-weight: 800; font-size: clamp(2rem, 4.6vw, 3.2rem); line-height: 1; max-width: 18ch; }
+.sec-intro { max-width: 58ch; color: var(--muted); margin-top: 16px; }
+
+
+.web { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 20px; margin-top: 36px; }
+.web figure { margin: 0; min-width: 0; }
+.web a { display: block; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background: var(--stage); }
+.web img { display: block; width: 100%; height: auto; }
+.web figcaption { font: 500 .78rem var(--mono); color: var(--muted); margin-top: 8px; letter-spacing: .02em; }
+.web figcaption b { color: var(--fg); font-weight: 600; }
+.cols { display: grid; grid-template-columns: minmax(0, 1fr); gap: 40px 32px; margin-top: 44px; }
+@media (min-width: 620px) { .cols { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1040px) { .cols { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.col { min-width: 0; }
+.col::before { content: ""; display: block; width: 44px; height: 5px; border-radius: 1px; background: var(--c); margin-bottom: 18px; }
+.col h3 { font-size: 1.6rem; font-weight: 800; line-height: 1.05; }
+.col p { color: var(--muted); margin-top: 10px; }
+.col ul { margin-top: 18px; border-top: 1px solid var(--line); }
+.col li { padding-block: 9px; border-bottom: 1px solid var(--line); font-size: .95rem; }
+
+.samples { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 24px; margin-top: 44px; align-items: start; }
+.doc { min-width: 0; background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 22px; }
+.doc-tag { font: 500 .78rem var(--mono); text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin-bottom: 14px; }
+.doc-scroll { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+th { text-align: left; font: 500 .75rem var(--mono); text-transform: uppercase; letter-spacing: .08em; color: var(--muted); padding: 0 12px 8px 0; border-bottom: 1px solid var(--line); }
+td { vertical-align: top; padding: 10px 12px 10px 0; border-bottom: 1px solid var(--line); }
+td:first-child { font: 500 .78rem var(--mono); color: var(--script); white-space: nowrap; }
+td:last-child { padding-right: 0; }
+.copy h3 { font-size: 1.9rem; font-weight: 800; line-height: 1.05; }
+.copy p { margin-top: 14px; }
+.copy .cta { display: inline-block; margin-top: 18px; padding: 8px 14px; border-radius: 3px; background: var(--fg); color: var(--bg); font: 600 .85rem var(--body); }
+.note { margin-top: 18px; max-width: 62ch; font-size: .9rem; color: var(--muted); }
+
+.steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 190px), 1fr)); gap: 28px 24px; margin-top: 44px; counter-reset: step; }
+.steps li { counter-increment: step; border-top: 2px solid var(--fg); padding-top: 14px; min-width: 0; }
+.steps li::before { content: "Step " counter(step); display: block; font: 500 .78rem var(--mono); color: var(--muted); letter-spacing: .06em; margin-bottom: 8px; }
+.steps h3 { font-size: 1.35rem; font-weight: 800; }
+.steps p { margin-top: 8px; color: var(--muted); font-size: .93rem; }
+
+.sub { margin-top: 64px; font-size: 1.6rem; font-weight: 800; }
+.tools { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
+.tools li { padding: 8px 16px; border: 1px solid var(--line); background: var(--surface); border-radius: 4px; font: 500 .85rem var(--mono); }
+
+.contact { padding-block: clamp(56px, 9vw, 112px); border-top: 1px solid var(--line); }
+.contact h2 { font-size: clamp(2.4rem, 7vw, 5rem); max-width: 14ch; }
+.contact p { max-width: 52ch; margin-top: 20px; color: var(--muted); font-size: 1.1rem; }
+.reach { margin-top: 28px; display: grid; gap: 10px; font: 500 .9rem var(--mono); }
+.reach li { display: flex; flex-wrap: wrap; gap: 2px 16px; overflow-wrap: anywhere; min-width: 0; }
+.reach span { width: 92px; flex: none; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; font-size: .78rem; padding-top: .2em; }
+.reach b { font-weight: 500; user-select: all; min-width: 0; }
+
+footer { border-top: 1px solid var(--line); padding-block: 24px 32px; display: flex; flex-wrap: wrap; gap: 6px 24px; justify-content: space-between; font: 500 .8rem var(--mono); color: var(--muted); }
+</style>
+
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="#top">Muhammed Usman</a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#showreel">Showreel</a>
+      <a href="#websites">Websites</a>
+      <a href="#writing">Writing</a>
+      <a href="#services">Services</a>
+      <a href="#process">Process</a>
+      <a class="nav-cta" href="#contact">Hire me</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="id">
+        <img src="media/muhammed.jpg" width="720" height="960" alt="Portrait of Muhammed Usman" fetchpriority="high">
+        <div>
+          <p class="status"><b>Open to remote roles</b><span>Nigeria</span><span>WAT · UTC+1</span></p>
+          <h1 class="id-name">Muhammed <span>Usman</span></h1>
+          <p class="id-role">Video editor · Copywriter · Scriptwriter · Web developer</p>
+        </div>
+      </div>
+      <p class="tagline">I write the script, then I <em>cut</em> the video.</p>
+      <p class="lede">I make short-form ads, UGC-style videos and YouTube content, animate them in Remotion, write the hooks, scripts and copy that go with them, and build the websites they send people to.</p>
+      <div class="actions">
+        <a class="btn btn-main" href="https://www.linkedin.com/in/muhammedusman-editor/">Message me on LinkedIn</a>
+        <a class="btn btn-ghost" href="#showreel">Watch the showreel</a>
+      </div>
+      <dl class="facts">
+        <div><dt>What I do</dt><dd>Video, scripts, copy, websites</dd></div>
+        <div><dt>In this portfolio</dt><dd>4 videos, 2 writing samples, 1 website concept</dd></div>
+        <div><dt>Availability</dt><dd>Remote roles and freelance</dd></div>
+        <div><dt>Time zone</dt><dd>WAT (UTC+1)</dd></div>
+      </dl>
+    </section>
+
+    <section class="sec" id="showreel">
+      <p class="eyebrow">Showreel</p>
+      <h2>Animated in code</h2>
+      <p class="sec-intro">Four sample videos built with Remotion, a React tool for making video. I made them for this portfolio, so they are samples, not client work. Each has its own soundtrack: press the speaker icon on the player to turn the sound on.</p>
+      <div class="reel">
+        <div class="stage" id="stage">
+          <video id="player" controls muted loop playsinline preload="metadata" poster="media/Explainer.jpg">
+            <source src="media/Explainer.mp4" type="video/mp4">
+            <source src="media/Explainer.webm" type="video/webm">
+          </video>
+        </div>
+        <ul class="reel-list" id="reel-list">
+          <li><button class="reel-item is-active" type="button" data-id="Explainer" data-orient="landscape">
+            <img src="media/Explainer-thumb.jpg" alt="" width="88" height="88">
+            <span class="ri-text"><b>Animated explainer</b><em>16:9 · 9 s</em><span>A workflow explainer animated frame by frame in code.</span></span>
+          </button></li>
+          <li><button class="reel-item" type="button" data-id="UgcAd" data-orient="portrait">
+            <img src="media/UgcAd-thumb.jpg" alt="" width="88" height="88">
+            <span class="ri-text"><b>UGC-style ad</b><em>9:16 · 13 s</em><span>A captioned vertical ad: hook, problem, demo, proof and call to action. Fictional product.</span></span>
+          </button></li>
+          <li><button class="reel-item" type="button" data-id="HookReel" data-orient="portrait">
+            <img src="media/HookReel-thumb.jpg" alt="" width="88" height="88">
+            <span class="ri-text"><b>Kinetic hook reel</b><em>9:16 · 10 s</em><span>Four hook patterns set as moving type, to show pacing and emphasis.</span></span>
+          </button></li>
+          <li><button class="reel-item" type="button" data-id="ScriptToScreen" data-orient="landscape">
+            <img src="media/ScriptToScreen-thumb.jpg" alt="" width="88" height="88">
+            <span class="ri-text"><b>Script to screen</b><em>16:9 · 10 s</em><span>A script turning into a timeline and a finished cut, scene by scene.</span></span>
+          </button></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="sec" id="websites">
+      <p class="eyebrow">Web development</p>
+      <h2>Websites, designed and built.</h2>
+      <p class="sec-intro">A 30-screen website concept for a made-up design studio, "Lumen". It covers home, services, work, case studies, journal, careers, pricing, contact and error pages in one consistent system. Six screens below; tap one to enlarge. It is a concept I designed to show how I plan and build a full site, not a client project.</p>
+      <div class="web">
+        <figure><a href="media/web-1.jpg" target="_blank" rel="noopener"><img src="media/web-1.jpg" width="1200" height="750" loading="lazy" alt="Website concept screen: hero"></a><figcaption><b>Hero.</b> Opening screen, type-led, one clear action</figcaption></figure>
+        <figure><a href="media/web-3.jpg" target="_blank" rel="noopener"><img src="media/web-3.jpg" width="1200" height="750" loading="lazy" alt="Website concept screen: work grid"></a><figcaption><b>Work grid.</b> Featured project plus two supporting cards</figcaption></figure>
+        <figure><a href="media/web-12.jpg" target="_blank" rel="noopener"><img src="media/web-12.jpg" width="1200" height="750" loading="lazy" alt="Website concept screen: case study"></a><figcaption><b>Case study.</b> Full-bleed opener for a single project</figcaption></figure>
+        <figure><a href="media/web-18.jpg" target="_blank" rel="noopener"><img src="media/web-18.jpg" width="1200" height="750" loading="lazy" alt="Website concept screen: service page"></a><figcaption><b>Service page.</b> Product page with a live-looking interface preview</figcaption></figure>
+        <figure><a href="media/web-29.jpg" target="_blank" rel="noopener"><img src="media/web-29.jpg" width="1200" height="750" loading="lazy" alt="Website concept screen: pricing"></a><figcaption><b>Pricing.</b> Three tiers, the middle one highlighted</figcaption></figure>
+        <figure><a href="media/web-26.jpg" target="_blank" rel="noopener"><img src="media/web-26.jpg" width="1200" height="750" loading="lazy" alt="Website concept screen: contact"></a><figcaption><b>Contact.</b> Short brief form with a clear promise</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="sec" id="writing">
+      <p class="eyebrow">Writing</p>
+      <h2>Scripts and copy</h2>
+      <p class="sec-intro">A video script I would hand to an editor, and the ad copy that goes with it. Timecode, visual and voiceover sit in one table, so the person cutting it knows exactly what to show and say.</p>
+      <div class="samples">
+        <div class="doc">
+          <p class="doc-tag">Sample script · fictional product</p>
+          <div class="doc-scroll">
+            <table>
+              <thead><tr><th>Time</th><th>Visual</th><th>Voiceover</th></tr></thead>
+              <tbody>
+                <tr><td>0:00</td><td>Bottle drops onto a desk</td><td>I drank two litres a day for a month. I was off by half.</td></tr>
+                <tr><td>0:03</td><td>On-screen text: "The lines are guesses"</td><td>Most bottle markings are decoration. Nobody checks them.</td></tr>
+                <tr><td>0:10</td><td>Pouring into a measuring jug</td><td>So I poured it out and measured.</td></tr>
+                <tr><td>0:18</td><td>Close on the inner markings</td><td>These are printed inside and checked every 250 ml.</td></tr>
+                <tr><td>0:28</td><td>Old bottle and new bottle side by side</td><td>The old one said two litres. The jug said 1.1.</td></tr>
+                <tr><td>0:38</td><td>Product shot with link</td><td>Link below if you want to stop guessing.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="doc copy">
+          <p class="doc-tag">Sample ad copy · fictional product</p>
+          <h3>Two litres means two litres.</h3>
+          <p>Most bottle lines are decoration. Ours are printed from the inside and checked every 250 ml, so you know what you actually drank today.</p>
+          <p>Dishwasher safe. Free returns for 30 days.</p>
+          <span class="cta">Shop now</span>
+        </div>
+      </div>
+      <p class="note">Both samples are for a fictional product. They show how I structure a script and how I write an ad. Full video samples and project links are available on request through LinkedIn.</p>
+    </section>
+
+    <section class="sec" id="services">
+      <p class="eyebrow">Services</p>
+      <h2>Four skills, one workflow</h2>
+      <p class="sec-intro">Most video work stalls between the writer and the editor. I do both, so the script is written to be cut and the cut follows the script. I also build the website the video points to.</p>
+      <div class="cols">
+        <div class="col" style="--c: var(--video)">
+          <h3>Video editing</h3>
+          <p>Pacing, cuts and finish for ads and long-form. I run my own faceless YouTube channel about AI tools, so I work the full pipeline daily.</p>
+          <ul>
+            <li>Short-form and UGC-style ads</li>
+            <li>YouTube videos and explainers</li>
+            <li>Animated explainers built with Remotion</li>
+            <li>Captions, sound and color</li>
+          </ul>
+        </div>
+        <div class="col" style="--c: var(--script)">
+          <h3>Scriptwriting</h3>
+          <p>Scripts that sound like a person talking, built around retention.</p>
+          <ul>
+            <li>Hooks for the first 3 seconds</li>
+            <li>Open loops and pattern interrupts</li>
+            <li>Scene-by-scene scripts with timecodes</li>
+            <li>YouTube scripts of any length</li>
+          </ul>
+        </div>
+        <div class="col" style="--c: var(--words)">
+          <h3>Copywriting</h3>
+          <p>Words that sell, for the ad and for the page behind it.</p>
+          <ul>
+            <li>Ad headlines and primary text</li>
+            <li>UGC creator briefs</li>
+            <li>Product page copy</li>
+            <li>Articles and long-form writing</li>
+          </ul>
+        </div>
+        <div class="col" style="--c: var(--voice)">
+          <h3>Web development</h3>
+          <p>Fast pages that send viewers somewhere useful.</p>
+          <ul>
+            <li>Portfolio and business websites</li>
+            <li>Landing pages for ads and offers</li>
+            <li>Web apps built with React</li>
+            <li>Pages that work on a phone</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" id="process">
+      <p class="eyebrow">Process</p>
+      <h2>How a project runs</h2>
+      <ol class="steps">
+        <li>
+          <h3>Brief</h3>
+          <p>You send the product, the offer and any footage. I ask what the viewer should do at the end.</p>
+        </li>
+        <li>
+          <h3>Script</h3>
+          <p>I outline each section first. You approve the outline before I write the full script.</p>
+        </li>
+        <li>
+          <h3>Rough cut</h3>
+          <p>Footage assembled to the script, with pacing and voiceover timing in place.</p>
+        </li>
+        <li>
+          <h3>Polish</h3>
+          <p>Captions, music levels, sound, color and on-screen text, then your revisions.</p>
+        </li>
+        <li>
+          <h3>Delivery</h3>
+          <p>Final files in the sizes you need, captions as SRT and the script as a document.</p>
+        </li>
+      </ol>
+
+      <h3 class="sub">One 45-second ad, laid out</h3>
+      <p class="sec-intro" style="margin-top:8px">How a short ad is planned before it is cut: script sections on top, then picture, voiceover, music and captions on their own tracks.</p>
+      <div class="tl-scroll" style="margin-top:0">
+        <div class="tl" role="img" aria-label="Timeline of a 45 second ad: script sections hook, problem, demo, proof and call to action over tracks for video cuts, voiceover, music and captions.">
+          <div class="tl-row">
+            <span class="tl-name">TIME</span>
+            <div class="lane ruler-lane">
+              <span style="left:0%">0:00</span>
+              <span style="left:22.222%">0:10</span>
+              <span style="left:44.444%">0:20</span>
+              <span style="left:66.667%">0:30</span>
+              <span style="left:88.889%">0:40</span>
+            </div>
+          </div>
+          <div class="tl-row">
+            <span class="tl-name">T1 SCRIPT</span>
+            <div class="lane">
+              <div class="clip c-script" style="flex-grow:3">Hook</div>
+              <div class="clip c-script" style="flex-grow:7">Problem</div>
+              <div class="clip c-script" style="flex-grow:18">Demo</div>
+              <div class="clip c-script" style="flex-grow:10">Proof</div>
+              <div class="clip c-script" style="flex-grow:7">CTA</div>
+            </div>
+          </div>
+          <div class="tl-row">
+            <span class="tl-name">V1 VIDEO</span>
+            <div class="lane">
+              <div class="clip c-video" style="flex-grow:3"></div>
+              <div class="clip c-video" style="flex-grow:3"></div>
+              <div class="clip c-video" style="flex-grow:4"></div>
+              <div class="clip c-video" style="flex-grow:4"></div>
+              <div class="clip c-video" style="flex-grow:5"></div>
+              <div class="clip c-video" style="flex-grow:5"></div>
+              <div class="clip c-video" style="flex-grow:4"></div>
+              <div class="clip c-video" style="flex-grow:5"></div>
+              <div class="clip c-video" style="flex-grow:5"></div>
+              <div class="clip c-video" style="flex-grow:3"></div>
+              <div class="clip c-video" style="flex-grow:4"></div>
+            </div>
+          </div>
+          <div class="tl-row">
+            <span class="tl-name">A1 VOICE</span>
+            <div class="lane">
+              <div class="clip c-voice" style="flex-grow:10">voiceover</div>
+              <div class="gap" style="flex-grow:1"></div>
+              <div class="clip c-voice" style="flex-grow:17">voiceover</div>
+              <div class="gap" style="flex-grow:1"></div>
+              <div class="clip c-voice" style="flex-grow:9">voiceover</div>
+              <div class="gap" style="flex-grow:1"></div>
+              <div class="clip c-voice" style="flex-grow:6">voiceover</div>
+            </div>
+          </div>
+          <div class="tl-row">
+            <span class="tl-name">A2 MUSIC</span>
+            <div class="lane">
+              <div class="clip c-voice" style="flex-grow:45">music bed, ducked under voice</div>
+            </div>
+          </div>
+          <div class="tl-row">
+            <span class="tl-name">CC WORDS</span>
+            <div class="lane">
+              <div class="clip c-words" style="flex-grow:5">captions</div>
+              <div class="clip c-words" style="flex-grow:5"></div>
+              <div class="clip c-words" style="flex-grow:5"></div>
+              <div class="clip c-words" style="flex-grow:5"></div>
+              <div class="clip c-words" style="flex-grow:5"></div>
+              <div class="clip c-words" style="flex-grow:5"></div>
+              <div class="clip c-words" style="flex-grow:5"></div>
+              <div class="clip c-words" style="flex-grow:5"></div>
+              <div class="clip c-words" style="flex-grow:5"></div>
+            </div>
+          </div>
+          <div class="ph-track" aria-hidden="true">
+            <div class="playhead"><span>0:03 hook lands</span></div>
+          </div>
+        </div>
+      </div>
+      <ul class="specs">
+        <li>9:16 · 1080 × 1920</li>
+        <li>30 fps</li>
+        <li>Hook inside 3 s</li>
+        <li>Burned-in captions + SRT</li>
+      </ul>
+
+      <h3 class="sub">Tools I use daily</h3>
+      <ul class="tools">
+        <li>CapCut</li>
+        <li>Remotion</li>
+        <li>Canva</li>
+        <li>Claude</li>
+        <li>ChatGPT</li>
+        <li>Higgsfield</li>
+        <li>Google Flow</li>
+      </ul>
+    </section>
+
+    <section class="contact" id="contact">
+      <p class="eyebrow">Contact</p>
+      <h2>Let's work together.</h2>
+      <p>I'm open to remote roles and freelance projects. Message me with what you are making and when you need it.</p>
+      <div class="actions">
+        <a class="btn btn-main" href="https://www.linkedin.com/in/muhammedusman-editor/">Message me on LinkedIn</a>
+        <a class="btn btn-ghost" href="https://wa.me/2348068687796">WhatsApp</a>
+        <a class="btn btn-ghost" href="mailto:usmanmuha445@gmail.com">Email</a>
+      </div>
+      <ul class="reach">
+        <li><span>LinkedIn</span><b>linkedin.com/in/muhammedusman-editor</b></li>
+        <li><span>Email</span><b>usmanmuha445@gmail.com</b></li>
+        <li><span>WhatsApp</span><b>+234 806 868 7796</b></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <span>© 2026 Muhammed Usman · Video editor, copywriter, scriptwriter, web developer</span>
+    <span>Nigeria · WAT (UTC+1) · <a href="#top">Back to top</a></span>
+  </footer>
+</div>
+
+<script>
+(function () {
+  try {
+    var player = document.getElementById('player');
+    var stage = document.getElementById('stage');
+    var items = Array.prototype.slice.call(document.querySelectorAll('.reel-item'));
+    function play() { var p = player.play(); if (p && p.catch) p.catch(function () {}); }
+    function select(btn) {
+      items.forEach(function (b) {
+        b.classList.toggle('is-active', b === btn);
+        b.setAttribute('aria-current', b === btn ? 'true' : 'false');
+      });
+      var id = btn.getAttribute('data-id');
+      stage.classList.toggle('portrait', btn.getAttribute('data-orient') === 'portrait');
+      player.poster = 'media/' + id + '.jpg';
+      player.innerHTML = '';
+      [['mp4', 'video/mp4'], ['webm', 'video/webm']].forEach(function (t) {
+        var src = document.createElement('source');
+        src.src = 'media/' + id + '.' + t[0];
+        src.type = t[1];
+        player.appendChild(src);
+      });
+      player.load();
+      play();
+    }
+    items.forEach(function (b) { b.addEventListener('click', function () { select(b); }); });
+    play();
+  } catch (e) {}
+})();
+</script>
